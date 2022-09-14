@@ -1,1 +1,1 @@
-# django-skeleton
+# {{ cookiecutter.project_name }}
