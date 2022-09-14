@@ -129,7 +129,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SOCIAL_AUTH_JSONFIELD_ENABLED = True
 
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.facebook.GoogleOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
     # and maybe some others ...
     'django.contrib.auth.backends.ModelBackend',
 )
