@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    "rest_framework",
+    "rest_framework.authtoken",
+    'social_django',
+    'rest_social_auth',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +126,21 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+SOCIAL_AUTH_JSONFIELD_ENABLED = True
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.GoogleOAuth2',
+    # and maybe some others ...
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '{{ cookiecutter.GOOGLE_OAUTH2_KEY}}'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "{{ cookiecutter.GOOGLE_OAUTH2_SECRET}}"
+REST_SOCIAL_OAUTH_ABSOLUTE_REDIRECT_URI = '{{ REST_SOCIAL_OAUTH_ABSOLUTE_REDIRECT_URI }}'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_IGNORE_DEFAULT_SCOPE = True
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
+    'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/userinfo.profile'
+]
+

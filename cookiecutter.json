@@ -2,6 +2,9 @@
   "repo_name": "MyProject",
   "project_name": "MyProject",
   "project_slug": "myproject",
-  "developer_name": "",
-  "organization_name": ""
+  "developer_name": "Django Developer",
+  "organization_name": "MyOrg",
+  "GOOGLE_OAUTH2_KEY": "",
+  "GOOGLE_OAUTH2_SECRET": "",
+  "REST_SOCIAL_OAUTH_ABSOLUTE_REDIRECT_URI": ""
 }
