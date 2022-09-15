@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     'social_django',
     'rest_social_auth',
+
+    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -128,6 +130,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SOCIAL_AUTH_JSONFIELD_ENABLED = True
 
+AUTH_USER_MODEL = "accounts.User"
+
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
     # and maybe some others ...
@@ -143,4 +147,6 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
     'https://www.googleapis.com/auth/userinfo.email',
     'https://www.googleapis.com/auth/userinfo.profile'
 ]
+
+
 
