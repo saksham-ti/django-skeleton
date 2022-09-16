@@ -61,20 +61,27 @@ INSTALLED_APPS = [
     {% endif %}
     'health_check',
     {%- if cookiecutter.prometheus %}
-    'django_prometheus'
+    'django_prometheus',
     {%- endif %}
     
     "accounts",
 ]
 
 MIDDLEWARE = [
+    {%- if cookiecutter.prometheus %}
+    'django_prometheus.middleware.PrometheusBeforeMiddleware',
+    {%- endif %}
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    {%- if cookiecutter.prometheus %}
+    'django_prometheus.middleware.PrometheusAfterMiddleware'
+    {%- endif %}
 ]
 
 ROOT_URLCONF = '{{cookiecutter.project.slug}}.urls'
@@ -90,6 +97,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
