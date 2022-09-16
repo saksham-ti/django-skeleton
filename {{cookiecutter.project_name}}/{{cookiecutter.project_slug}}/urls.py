@@ -22,6 +22,7 @@ from drf_yasg import openapi
 
 from accounts.urls import router as accounts_router
 
+{%- if cookiecutter.documentation.swagger %}
 schema_view = get_schema_view(
    openapi.Info(
       title="{{cookiecutter.project_name}}",
@@ -34,7 +35,7 @@ schema_view = get_schema_view(
    public=True,
    permission_classes=[permissions.AllowAny],
 )
-
+{%- endif %}
 
 router = DefaultRouter()
 router.registry.extend(accounts_router.registry)
@@ -48,10 +49,12 @@ urlpatterns = [
     path('auth/', include('dj_rest_auth.urls')),
     path('auth/registration/', include('dj_rest_auth.registration.urls')),
 
+    {%- if cookiecutter.documentation.swagger %}
     # Swagger Documentation URLs
     path('swagger(?P<format>\.json|\.yaml)', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    {%- endif %}
 
     path('', include(router.urls)),
 ]
