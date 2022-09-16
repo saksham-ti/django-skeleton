@@ -1,0 +1,30 @@
+# image:
+#   file: .gitpod/Dockerfile
+# List the ports you want to expose and what to do when they are served. See https://www.gitpod.io/docs/config-ports/
+ports:
+  - port: 8111
+  - port: 8000
+    onOpen: ignore
+
+# List the start up tasks. You can start them in parallel in multiple terminals. See https://www.gitpod.io/docs/config-start-tasks/
+tasks:
+  - name: Runserver
+    init: pip install -r requirements.txt
+    command: |
+        python manage.py migrate
+        python manage.py runserver
+
+  # - name: Install node packages
+  #   init: npm i
+  # - name: Create DB Data for devspaces
+  #   command: |
+  #       echo 'Create DB Data for devspaces'
+  #       source scripts/devspace/run_test_setup_devspaces_db.sh
+  # - name: Perform migration and start server
+  #   command: source scripts/devspace/setup_project_gitpod.sh
+
+vscode:
+  extensions:
+    - eamodio.gitlens
+    - ms-python.python
+    - alexcvzz.vscode-sqlite

@@ -1,4 +1,4 @@
-"""{{cookiecutter.project_slug}} URL Configuration
+"""{{cookiecutter.project.slug}} URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -22,12 +22,13 @@ from drf_yasg import openapi
 
 from accounts.urls import router as accounts_router
 
+
 {%- if cookiecutter.documentation.swagger %}
 schema_view = get_schema_view(
    openapi.Info(
-      title="{{cookiecutter.project_name}}",
+      title="{{cookiecutter.project.name}}",
       default_version='v1',
-      description="{{cookiecutter.project_description}}",
+      description="{{cookiecutter.project.description}}",
       terms_of_service="https://www.google.com/policies/terms/",
       contact=openapi.Contact(email="saksham@snippets.local"),
       license=openapi.License(name="BSD License"),
@@ -43,11 +44,16 @@ router.registry.extend(accounts_router.registry)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/login/', include('rest_social_auth.urls_token')),
-
+    
+    {%- if cookiecutter.authentication.rest %}
     # Auth API URLs
     path('auth/', include('dj_rest_auth.urls')),
     path('auth/registration/', include('dj_rest_auth.registration.urls')),
+    {%- endif %}
+
+    {%- if cookiecutter.authentication.rest %}
+    path('api/login/', include('rest_social_auth.urls_token')),
+    {%- endif %}
 
     {%- if cookiecutter.documentation.swagger %}
     # Swagger Documentation URLs

@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import User
 
-admin.site.site_header = '{{cookiecutter.project_name}}'
+admin.site.site_header = '{{cookiecutter.project.name}}'
 
 
 class UserAdmin(admin.ModelAdmin):

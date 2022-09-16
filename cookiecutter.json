@@ -1,16 +1,31 @@
 {
   "repo_name": "MyProject",
-  "project_name": "MyProject",
-  "project_slug": "myproject",
-  "project_description": "Sample Project Description",
-  "project_contact_email": "saksham@trilogy.com",
-  "developer_name": "Django Developer",
-  "organization_name": "MyOrg",
-  "GOOGLE_OAUTH2_KEY": "",
-  "GOOGLE_OAUTH2_SECRET": "",
-  "REST_SOCIAL_OAUTH_ABSOLUTE_REDIRECT_URI": "",
+  "organization_name": "Trilogy",
+  "project": {
+      "name": "MyProject",
+      "slug": "myproject",
+      "description": "Sample Project Description",
+      "contact_email": "saksham@trilogy.com",
+      "owner": "Saksham Mittal"
+  },
+  "authentication": {
+      "rest": true,
+      "aws_cognito": {
+          "key": ""
+      },
+      "social": {
+          "google": {
+              "oauth2_key": "",
+              "oauth2_secret": "",
+              "oauth_absolute_redirect_uri": ""
+          }
+      }
+
+  },
   "documentation": {
     "swagger": true,
     "readme": true
-  }
+  },
+  "prometheus": true,
+  "linter": "pylint"
 }

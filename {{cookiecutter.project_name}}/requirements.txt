@@ -1,9 +1,0 @@
-django
-djangorestframework
-markdown
-django-filter
-social-auth-app-django
-rest-social-auth
-dj-rest-auth
-
-drf-yasg
