@@ -2,9 +2,15 @@
   "repo_name": "MyProject",
   "project_name": "MyProject",
   "project_slug": "myproject",
+  "project_description": "Sample Project Description",
+  "project_contact_email": "saksham@trilogy.com",
   "developer_name": "Django Developer",
   "organization_name": "MyOrg",
   "GOOGLE_OAUTH2_KEY": "",
   "GOOGLE_OAUTH2_SECRET": "",
-  "REST_SOCIAL_OAUTH_ABSOLUTE_REDIRECT_URI": ""
+  "REST_SOCIAL_OAUTH_ABSOLUTE_REDIRECT_URI": "",
+  "documentation": {
+    "Swagger": true,
+    "Readme": true
+  }
 }

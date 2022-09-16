@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
@@ -42,6 +43,12 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     'social_django',
     'rest_social_auth',
+    'dj_rest_auth',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
+    'drf_yasg',
 
     "accounts",
 ]
@@ -130,6 +137,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SOCIAL_AUTH_JSONFIELD_ENABLED = True
 
+SITE_ID = 1
 AUTH_USER_MODEL = "accounts.User"
 
 AUTHENTICATION_BACKENDS = (
