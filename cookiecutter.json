@@ -10,7 +10,7 @@
   "GOOGLE_OAUTH2_SECRET": "",
   "REST_SOCIAL_OAUTH_ABSOLUTE_REDIRECT_URI": "",
   "documentation": {
-    "Swagger": true,
-    "Readme": true
+    "swagger": true,
+    "readme": true
   }
 }
