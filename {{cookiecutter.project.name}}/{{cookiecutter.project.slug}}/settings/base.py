@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     {%- if cookiecutter.documentation.swagger %}
     'drf_yasg',
     {% endif %}
-    'health_check',
+    # 'health_check',
     {%- if cookiecutter.prometheus %}
     'django_prometheus',
     {%- endif %}
