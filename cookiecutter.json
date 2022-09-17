@@ -22,10 +22,35 @@
       }
 
   },
+  "database": {
+    "engine": "django.db.backends.sqlite3",
+    "host": "",
+    "port": "",
+    "name": "",
+    "user": "",
+    "password": ""
+  },
   "documentation": {
     "swagger": true,
-    "readme": true
+    "readme": true,
+    "demo_curl_requests": true,
+    "sample_crud": true
+
+  },
+  "environment": {
+    "linter": "pylint",
+    "local_debugger": true,
+    "env_variables": true,
+    "dockerfile": true, 
+    "gitpod": true
   },
   "prometheus": true,
-  "linter": "pylint"
+   
+  
+  "tests": {
+    "sample_tests": true,
+    "pytest": {
+
+    }
+  }
 }
