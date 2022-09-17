@@ -81,6 +81,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'accounts.disable_csrf.DisableCSRF',
     {%- if cookiecutter.prometheus %}
     'django_prometheus.middleware.PrometheusAfterMiddleware'
     {%- endif %}
