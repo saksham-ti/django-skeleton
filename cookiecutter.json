@@ -45,7 +45,13 @@
     "gitpod": true
   },
   "prometheus": true,
-   
+  "celery": {
+    "sample_tasks": true,
+    "timezone": "Asia/Kolkata",
+    "workers": 1,
+    "": "",
+    
+  },
   
   "tests": {
     "sample_tests": true,

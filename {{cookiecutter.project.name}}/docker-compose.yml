@@ -6,10 +6,8 @@ services:
         container_name: django
         command:  >
              sh -c "
-             python manage.py flush --noinput && 
              python manage.py makemigrations &&
              python manage.py migrate &&
-             python manage.py populate 5000 &&
              python manage.py runserver 0.0.0.0:8000"
         volumes:
             - .:/usr/src/app/
@@ -29,9 +27,9 @@ services:
         image: postgres
         container_name: postgres
         environment:
-            - POSTGRES_DB=wallstreet
-            - POSTGRES_USER=saksham
-            - POSTGRES_PASSWORD=saksham123
+            - POSTGRES_DB={{cookiecutter.database.name}}
+            - POSTGRES_USER={{cookiecutter.database.user}}
+            - POSTGRES_PASSWORD={{cookiecutter.database.password}}
         ports:
             - "5432:5432"
         healthcheck:
@@ -47,7 +45,7 @@ services:
             - "6379:6379"
     celery:
         build: .
-        command: celery -A wallstreet worker -l INFO
+        command: celery -A {{cookiecutter.project.slug}} worker -l INFO
         volumes:
             - .:/usr/src/app
         environment:
