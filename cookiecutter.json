@@ -49,8 +49,7 @@
     "sample_tasks": true,
     "timezone": "Asia/Kolkata",
     "workers": 1,
-    "": "",
-    
+    "": ""
   },
   
   "tests": {
