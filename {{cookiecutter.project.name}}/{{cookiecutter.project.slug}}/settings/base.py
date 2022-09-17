@@ -63,7 +63,7 @@ INSTALLED_APPS = [
     {% endif %}
     # 'health_check',
     {%- if cookiecutter.prometheus %}
-    'django_prometheus',
+    # 'django_prometheus',
     {%- endif %}
     
     "accounts",
