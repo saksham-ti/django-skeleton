@@ -37,5 +37,30 @@ source ./venv/bin/activate
 source scripts/setup_project.sh
 
 # setup_project.sh will start the server, for subsequent server restart
-python ./integration_hub_v2/manage.py runserver_plus 4000
+python manage.py runserver
 ```
+
+## Committing Migrations
+
+Follow this process to make changes to models:
+- Make changes to the model and run `python integration_hub_v2/manage.py makemigrations`
+- This command will create migrations in `integration_hub_v2/integration_hub_v2/test_migrations` directory. Copy the migrations to `disabled_migrations` directory and push it to your feature branch
+- Get your migrations and model changes approved
+- After they're approved, move the migrations from `disabled_migrations` to `migrations` directory
+
+This process must be followed to ensure that WIP changes to model do not affect the DevCentral DB.
+
+## Linting
+We use `pylint` for linting the code. Execute following command to check the code for any linting issues:
+
+```
+pylint --load-plugins=pylint_django integration_hub_v2/integration_hub_v2/ --rcfile=.pylintrc_github --disable=django-not-configured
+```
+
+
+
+## Environment Variables
+
+Details about each environment variable & how to generate it can be found [here](https://github.com/trilogy-group/cn-integration-hub-v2/blob/master/integration_hub_v2/.env.example)
+
+
