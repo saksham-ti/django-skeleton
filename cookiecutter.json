@@ -6,7 +6,13 @@
       "slug": "myproject",
       "description": "Sample Project Description",
       "contact_email": "saksham@trilogy.com",
-      "owner": "Saksham Mittal"
+      "owner": "Saksham Mittal",
+      "aws": {
+        "aws_access_key_id": "",
+        "aws_secret_access_key": "",
+        "region_name": "",
+        "bucket_name": ""
+      }
   },
   "authentication": {
       "rest": true,
