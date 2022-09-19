@@ -28,4 +28,6 @@ django-request-logging
 django-health-check
 django-oauth-toolkit
 pytest-django
+pytest-factoryboy
+pytest-cov
 python-decouple
