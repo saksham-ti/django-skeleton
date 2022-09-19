@@ -54,7 +54,7 @@ This process must be followed to ensure that WIP changes to model do not affect 
 We use `pylint` for linting the code. Execute following command to check the code for any linting issues:
 
 ```
-pylint --load-plugins=pylint_django integration_hub_v2/integration_hub_v2/ --rcfile=.pylintrc_github --disable=django-not-configured
+pylint --load-plugins=pylint_django {{cookiecutter.project.slug}}/ --rcfile=.pylintrc_github --disable=django-not-configured
 ```
 
 
