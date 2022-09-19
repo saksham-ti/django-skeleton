@@ -171,6 +171,8 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
     # and maybe some others ...
     'django.contrib.auth.backends.ModelBackend',
+    # allauth specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '{{ cookiecutter.authentication.social.google.oauth2_key }}'
