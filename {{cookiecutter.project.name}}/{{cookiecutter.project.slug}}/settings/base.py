@@ -209,7 +209,7 @@ if not EMAIL_URL and SENDGRID_USERNAME and SENDGRID_PASSWORD:
     )
 {%- endif %}
 
-{%- if cookiecutter.email.default}
+{%- if cookiecutter.email.default %}
 # EMAIL
 EMAIL_USE_TLS = config('EMAIL_USE_TLS')
 EMAIL_USE_SSL = config('EMAIL_USE_SSL')
