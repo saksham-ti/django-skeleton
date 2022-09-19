@@ -5,10 +5,10 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-{%- if cookiecutter.database %}
+{%- if cookiecutter.database.sql %}
 DATABASES = {
     'default': {
-        'ENGINE': '{{ cookiecutter.database.engine }}',
+        'ENGINE': '{{ cookiecutter.database.sql.engine }}',
         'NAME': config("DB_NAME"),
         'USER': config("DB_USER"),
         'PASSWORD': config("DB_PASSWORD"),

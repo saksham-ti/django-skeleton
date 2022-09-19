@@ -27,9 +27,9 @@ services:
         image: postgres
         container_name: postgres
         environment:
-            - POSTGRES_DB={{cookiecutter.database.name}}
-            - POSTGRES_USER={{cookiecutter.database.user}}
-            - POSTGRES_PASSWORD={{cookiecutter.database.password}}
+            - POSTGRES_DB={{cookiecutter.database.sql.name}}
+            - POSTGRES_USER={{cookiecutter.database.sql.user}}
+            - POSTGRES_PASSWORD={{cookiecutter.database.sql.password}}
         ports:
             - "5432:5432"
         healthcheck:
