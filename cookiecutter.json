@@ -15,20 +15,32 @@
       },
       "social": {
           "google": {
-              "oauth2_key": "",
-              "oauth2_secret": "",
-              "oauth_absolute_redirect_uri": ""
+            "oauth2_key": "",
+            "oauth2_secret": "",
+            "oauth_absolute_redirect_uri": ""
+          },
+          "github": {
+            "oauth2_key": "",
+            "oauth2_secret": "",
+            "oauth_absolute_redirect_uri": ""
           }
       }
-
   },
   "database": {
-    "engine": "django.db.backends.sqlite3",
-    "host": "",
-    "port": "",
-    "name": "",
-    "user": "",
-    "password": ""
+    "dynamodb": {
+      "endpoint_url": "http://localhost:8080",
+      "region_name": "us-east-1",
+      "aws_access_key_id": "",
+      "aws_secret_access_key": ""
+    },
+    "sql": {
+      "engine": "django.db.backends.sqlite3",
+      "host": "",
+      "port": "",
+      "name": "",
+      "user": "",
+      "password": ""
+    }
   },
   "documentation": {
     "swagger": true,
@@ -56,6 +68,30 @@
     "sample_tests": true,
     "pytest": {
 
+    }
+  },
+  "email": {
+    "sendgrid": {
+      "email_url": "",
+      "username": "",
+      "password": ""
+    },
+    "default": {
+      "email_backend": "django.core.mail.backends.console.EmailBackend",
+      "host": "",
+      "port": "",
+      "host_user": "",
+      "host_password": "",
+      "use_tls": true,
+      "use_ssl": true,
+      "default_from_email": "info@trilogy.com"
+    }
+  },
+  "storage": {
+    "cloudinary": {
+      "cloud_name": "",
+      "api_key": "",
+      "api_secret": ""
     }
   }
 }

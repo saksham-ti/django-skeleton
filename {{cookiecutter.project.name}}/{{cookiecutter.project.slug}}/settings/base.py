@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+from email.policy import default
 from decouple import config
 import os
 from pathlib import Path
@@ -194,4 +195,27 @@ CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_CACHE_BACKEND = 'django-cache'
 CELERY_EVENT_QUEUE_PREFIX = 'sakshammittal'
+{%- endif %}
+
+
+{%- if cookiecutter.email.sendgrid %}
+EMAIL_URL = os.environ.get("EMAIL_URL")
+SENDGRID_USERNAME = os.environ.get("SENDGRID_USERNAME")
+SENDGRID_PASSWORD = os.environ.get("SENDGRID_PASSWORD")
+if not EMAIL_URL and SENDGRID_USERNAME and SENDGRID_PASSWORD:
+    EMAIL_URL = "smtp://%s:%s@smtp.sendgrid.net:587/?tls=True" % (
+        SENDGRID_USERNAME,
+        SENDGRID_PASSWORD,
+    )
+{%- endif %}
+
+{%- if cookiecutter.email.default}
+# EMAIL
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_USE_SSL = config('EMAIL_USE_SSL')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 {%- endif %}
