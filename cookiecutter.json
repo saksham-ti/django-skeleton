@@ -110,5 +110,6 @@
       "aws_bucket_name": "",
       "aws_custom_domain": ""
     }
-  }
+  },
+  "use_whitenoise": true
 }
