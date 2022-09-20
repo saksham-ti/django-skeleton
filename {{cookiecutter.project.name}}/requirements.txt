@@ -16,7 +16,7 @@ drf-yasg
 pylint-django
 django_prometheus
 
-{%- if cookiecutter.celery %}
+{%- if cookiecutter.worker.celery %}
 Celery
 django-redis
 
