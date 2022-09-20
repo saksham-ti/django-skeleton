@@ -54,3 +54,4 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': config('CLOUDINARY_API_SECRET')
 }
 {%- endif %}
+{%- endif %}
