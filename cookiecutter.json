@@ -62,14 +62,19 @@
     "dockerfile": true, 
     "gitpod": true
   },
-  "prometheus": true,
-  "celery": {
-    "sample_tasks": true,
-    "timezone": "Asia/Kolkata",
-    "workers": 1,
-    "broker": "redis"
-  },
   
+  "prometheus": true,
+  "worker": {
+    "celery": {
+      "sample_tasks": true,
+      "timezone": "Asia/Kolkata",
+      "workers": 1,
+      "broker": "redis"
+    },
+    "django_q": {
+      
+    }
+  },
   "tests": {
     "sample_tests": true,
     "pytest": {
@@ -98,6 +103,12 @@
       "cloud_name": "",
       "api_key": "",
       "api_secret": ""
+    },
+    "s3": {
+      "aws_access_key_id": "",
+      "aws_secret_access_key": "",
+      "aws_bucket_name": "",
+      "aws_custom_domain": ""
     }
   }
 }

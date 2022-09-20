@@ -66,6 +66,9 @@ INSTALLED_APPS = [
     {%- if cookiecutter.prometheus %}
     # 'django_prometheus',
     {%- endif %}
+    # {%- if cookiecutter.worker.django_q %}
+    # 'django-q',
+    # {%- endif %}
     
     "accounts",
 ]

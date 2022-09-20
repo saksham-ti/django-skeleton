@@ -31,3 +31,9 @@ pytest-django
 pytest-factoryboy
 pytest-cov
 python-decouple
+
+{%- if cookiecutter.worker.django_q %}
+django-q
+{%- endif %}
+
+django-storages
