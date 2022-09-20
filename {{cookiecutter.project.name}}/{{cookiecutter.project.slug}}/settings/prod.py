@@ -39,14 +39,14 @@ CELERY_EVENT_QUEUE_PREFIX = 'sakshammittal'
 
 {%- if cookiecutter.storage is defined %}
 # Storages
-{%- cookiecutter.storage.s3 is defined %}
+{%- if cookiecutter.storage.s3 is defined %}
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 AWS_S3_ACCESS_KEY_ID = config('AWS_S3_ACCESS_KEY_ID')
 AWS_S3_SECRET_ACCESS_KEY = config('AWS_S3_SECRET_ACCESS_KEY')
 AWS_S3_CUSTOM_DOMAIN = config('AWS_S3_CUSTOM_DOMAIN')
 {%- endif %}
-{%- cookiecutter.storage.cloudinary is defined %}
+{%- if cookiecutter.storage.cloudinary is defined %}
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
