@@ -1,6 +1,13 @@
 import os
 import shutil
-from .files_to_remove import files_to_remove, dirs_to_remove
+
+files_to_remove = set()
+dirs_to_remove = set()
+
+{%- if cookiecutter.tests is not defined %}
+files_to_remove = files_to_remove.union(('conftest'))
+dirs_to_remove = dirs_to_remove.union(('tests', ))
+{%- endif %}
 
 def append_to_gitignore_file(ignored_line):
     with open(".gitignore", "a") as gitignore_file:
