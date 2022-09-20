@@ -4,7 +4,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-{%- if cookiecutter.database.sql %}
+{%- if cookiecutter.database.sql is defined %}
 DATABASES = {
     'default': {
         'ENGINE': '{{ cookiecutter.database.sql.engine }}',
@@ -37,16 +37,16 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_CACHE_BACKEND = 'django-cache'
 CELERY_EVENT_QUEUE_PREFIX = 'sakshammittal'
 
-{%- if cookiecutter.storage %}
+{%- if cookiecutter.storage is defined %}
 # Storages
-{%- cookiecutter.storage.s3 %}
+{%- cookiecutter.storage.s3 is defined %}
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 AWS_S3_ACCESS_KEY_ID = config('AWS_S3_ACCESS_KEY_ID')
 AWS_S3_SECRET_ACCESS_KEY = config('AWS_S3_SECRET_ACCESS_KEY')
 AWS_S3_CUSTOM_DOMAIN = config('AWS_S3_CUSTOM_DOMAIN')
 {%- endif %}
-{%- cookiecutter.storage.cloudinary %}
+{%- cookiecutter.storage.cloudinary is defined %}
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),

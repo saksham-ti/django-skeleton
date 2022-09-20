@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
 
-    {%- if cookiecutter.authentication.rest %}
+    {%- if cookiecutter.authentication.rest is defined %}
     "rest_framework",
     "rest_framework.authtoken",
     'dj_rest_auth',
@@ -52,21 +52,21 @@ INSTALLED_APPS = [
     'allauth.account',
     {%- endif %}
 
-    {%- if cookiecutter.authentication.social %}
+    {%- if cookiecutter.authentication.social is defined %}
     'allauth.socialaccount',
     'social_django',
     'rest_social_auth',
     {% endif %}
     'corsheaders',
     
-    {%- if cookiecutter.documentation.swagger %}
+    {%- if cookiecutter.documentation.swagger is defined %}
     'drf_yasg',
     {% endif %}
     # 'health_check',
-    {%- if cookiecutter.prometheus %}
+    {%- if cookiecutter.prometheus is defined %}
     # 'django_prometheus',
     {%- endif %}
-    # {%- if cookiecutter.worker.django_q %}
+    # {%- if cookiecutter.worker.django_q is defined %}
     # 'django-q',
     # {%- endif %}
     
@@ -74,7 +74,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    {%- if cookiecutter.prometheus %}
+    {%- if cookiecutter.prometheus is defined %}
     'django_prometheus.middleware.PrometheusBeforeMiddleware',
     {%- endif %}
     'django.middleware.security.SecurityMiddleware',
@@ -86,7 +86,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'accounts.disable_csrf.DisableCSRF',
-    {%- if cookiecutter.prometheus %}
+    {%- if cookiecutter.prometheus is defined %}
     'django_prometheus.middleware.PrometheusAfterMiddleware'
     {%- endif %}
 ]
@@ -189,7 +189,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
     'https://www.googleapis.com/auth/userinfo.profile'
 ]
 
-{%- if cookiecutter.worker.celery %}
+{%- if cookiecutter.worker.celery is defined %}
 # CELERY
 CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
 CELERY_RESULT_BACKEND = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
@@ -201,7 +201,7 @@ CELERY_EVENT_QUEUE_PREFIX = 'sakshammittal'
 {%- endif %}
 
 
-{%- if cookiecutter.email.sendgrid %}
+{%- if cookiecutter.email.sendgrid is defined %}
 EMAIL_URL = os.environ.get("EMAIL_URL")
 SENDGRID_USERNAME = os.environ.get("SENDGRID_USERNAME")
 SENDGRID_PASSWORD = os.environ.get("SENDGRID_PASSWORD")
@@ -212,7 +212,7 @@ if not EMAIL_URL and SENDGRID_USERNAME and SENDGRID_PASSWORD:
     )
 {%- endif %}
 
-{%- if cookiecutter.email.default %}
+{%- if cookiecutter.email.default is defined %}
 # EMAIL
 EMAIL_USE_TLS = config('EMAIL_USE_TLS')
 EMAIL_USE_SSL = config('EMAIL_USE_SSL')
