@@ -172,13 +172,25 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 AUTHENTICATION_BACKENDS = (
+    {%- if cookiecutter.authentication.social is defined %}
+    {%- if cookiecutter.authentication.social.google is defined %}
     'social_core.backends.google.GoogleOAuth2',
+    {%- endif %}
+    {%- if cookiecutter.authentication.social.github is defined %}
+    'social_core.backends.github.GithubOAuth2',
+    {%- endif %}
+    {%- if cookiecutter.authentication.social.aws_cognito is defined %}
+    'social_core.backends.cognito.CognitoOAuth2',
+    {%- endif %}
+    {%- endif %}
     # and maybe some others ...
     'django.contrib.auth.backends.ModelBackend',
     # allauth specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
+{%- if cookiecutter.authentication.social is defined %}
+{%- if cookiecutter.authentication.social.google is defined %}
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '{{ cookiecutter.authentication.social.google.oauth2_key }}'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '{{ cookiecutter.authentication.social.google.oauth2_secret }}'
 REST_SOCIAL_OAUTH_ABSOLUTE_REDIRECT_URI = '{{ cookiecutter.authentication.social.google.oauth_absolute_redirect_uri}}'
@@ -188,6 +200,18 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
     'https://www.googleapis.com/auth/userinfo.email',
     'https://www.googleapis.com/auth/userinfo.profile'
 ]
+{%- endif %}
+{%- if cookiecutter.authentication.social.github is defined %}
+SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = config('SOCIAL_AUTH_GITHUB_SECRET')
+REST_SOCIAL_OAUTH_ABSOLUTE_REDIRECT_URI = config('REST_SOCIAL_OAUTH_ABSOLUTE_REDIRECT_URI')
+{%- endif %}
+{%- if cookiecutter.authentication.social.aws_cognito is defined %}
+SOCIAL_AUTH_COGNITO_KEY = config('SOCIAL_AUTH_COGNITO_KEY')
+SOCIAL_AUTH_COGNITO_SECRET = config('SOCIAL_AUTH_COGNITO_SECRET')
+SOCIAL_AUTH_COGNITO_POOL_DOMAIN = config('SOCIAL_AUTH_COGNITO_POOL_DOMAIN')
+{%- endif %}
+{%- endif %}
 
 {%- if cookiecutter.worker.celery is defined %}
 # CELERY

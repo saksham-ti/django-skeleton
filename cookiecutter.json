@@ -29,6 +29,11 @@
             "oauth2_key": "",
             "oauth2_secret": "",
             "oauth_absolute_redirect_uri": ""
+          },
+          "aws_cognito": {
+            "cognito_key": "",
+            "cognito_secret": "",
+            "cognito_pool_domain": ""
           }
       }
   },

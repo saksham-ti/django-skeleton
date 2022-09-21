@@ -16,18 +16,6 @@ class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-
-class AddressViewSet(ModelViewSet):
-    queryset = UserAddress.objects.all()
-    permission_classes = [IsOwnerOrAdmin]
-    serializer_class = AddressSerializer
-
-    def get_queryset(self):
-        queryset = UserAddress.objects.all()
-        if not self.request.user.is_superuser:
-            queryset = queryset.filter(user=self.request.user)
-        return queryset
-
     @action(detail=True, methods=['post'])
     def set_password(self, request, pk=None):
         user = self.get_object()
@@ -51,6 +39,18 @@ class AddressViewSet(ModelViewSet):
 
         serializer = self.get_serializer(recent_users, many=True)
         return Response(serializer.data)
+        
+
+class AddressViewSet(ModelViewSet):
+    queryset = UserAddress.objects.all()
+    permission_classes = [IsOwnerOrAdmin]
+    serializer_class = AddressSerializer
+
+    def get_queryset(self):
+        queryset = UserAddress.objects.all()
+        if not self.request.user.is_superuser:
+            queryset = queryset.filter(user=self.request.user)
+        return queryset
 
 
 class SampleViewSet(ViewSet):
