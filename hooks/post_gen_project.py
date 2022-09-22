@@ -25,7 +25,7 @@ def remove_dirs(dirs):
 
 
 REMOVE_PATHS = [
-    '{% if cookiecutter.deployment.cdk is not defined %} CDK {% endif %}',
+    # '{% if cookiecutter.deployment.cdk is not defined %} CDK {% endif %}',
 ]
 
 def main():
