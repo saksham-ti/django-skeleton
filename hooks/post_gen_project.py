@@ -10,7 +10,7 @@ def append_to_gitignore_file(ignored_line):
 
 REMOVE_PATHS = [
     {% if cookiecutter.deployment.cdk is not defined %} 
-    'CDK',
+    'cdk-deployment',
     {% endif %}
 
     {%- if cookiecutter.tests is not defined %}
