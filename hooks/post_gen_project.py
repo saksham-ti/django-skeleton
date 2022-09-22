@@ -24,11 +24,24 @@ def remove_dirs(dirs):
             shutil.rmtree(dir)
 
 
+REMOVE_PATHS = [
+    '{% if cookiecutter.deployment.cdk is not defined %} CDK {% endif %}',
+]
+
 def main():
     append_to_gitignore_file(".env")
     append_to_gitignore_file(".envs/*")
     remove_files(files_to_remove)
     remove_dirs(dirs_to_remove)
+    for path in REMOVE_PATHS:
+        path = path.strip()
+        if path and os.path.exists(path):
+            if os.path.isdir(path):
+                os.rmdir(path)
+            else:
+                os.unlink(path)
+
+
 
 
 if __name__ == "__main__":

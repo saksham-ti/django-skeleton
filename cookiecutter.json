@@ -116,5 +116,42 @@
       "aws_custom_domain": ""
     }
   },
-  "use_whitenoise": true
+  "use_whitenoise": true,
+  "deployment": {
+    "cdk": {
+      "default_region": "",
+      "default_account": "",
+      "vpc_name": "",
+      "vpc_id": "vpc-....",
+      "security_group_name": "",
+      "cluster_name": "",
+      "loadbalancer": {
+        "cpu": 256,
+        "desired_count": 2,
+        "memory_limit_mib": 512,
+        "max_healthy_percent": 200,
+        "min_healthy_percent": 50,
+        "certificate_arn": "arn:aws:acm:region_name:account:certificate/....",
+        "auto_scale_task_count": {
+          "min_capacity": 1,
+          "max_capacity": 5
+        },
+        "target_cpu_utilization_percent": 40,
+        "target_memory_utilization_percent": 40,
+        "health_check": {
+          "healthy_threshold_count": 2,
+          "interval_secs": 20,
+          "timeout_secs": 10
+        }
+      },
+      "domain_record": {
+        "record_name": "",
+        "domain_name": "devfactory.com",
+        "ttl_minutes": 1
+      }
+    },
+    "eyk": {
+
+    }
+  }
 }
