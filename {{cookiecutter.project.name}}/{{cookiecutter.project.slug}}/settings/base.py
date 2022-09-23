@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
 
-    {%- if cookiecutter.authentication.rest.enabled %}
+    {%- if cookiecutter.authentication.rest.enabled == 'True' %}
     "rest_framework",
     "rest_framework.authtoken",
     'dj_rest_auth',
@@ -52,21 +52,21 @@ INSTALLED_APPS = [
     'allauth.account',
     {%- endif %}
 
-    {%- if cookiecutter.authentication.social.enabled %}
+    {%- if cookiecutter.authentication.social.enabled == 'True' %}
     'allauth.socialaccount',
     'social_django',
     'rest_social_auth',
     {% endif %}
     'corsheaders',
     
-    {%- if cookiecutter.documentation.swagger.enabled %}
+    {%- if cookiecutter.documentation.swagger.enabled == 'True' %}
     'drf_yasg',
     {% endif %}
     # 'health_check',
-    {%- if cookiecutter.tracing.prometheus.enabled %}
+    {%- if cookiecutter.tracing.prometheus.enabled == 'True' %}
     # 'django_prometheus',
     {%- endif %}
-    # {%- if cookiecutter.worker.django_q.enabled %}
+    # {%- if cookiecutter.worker.django_q.enabled == 'True' %}
     # 'django-q',
     # {%- endif %}
     
@@ -74,7 +74,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    {%- if cookiecutter.tracing.prometheus.enabled %}
+    {%- if cookiecutter.tracing.prometheus.enabled == 'True' %}
     'django_prometheus.middleware.PrometheusBeforeMiddleware',
     {%- endif %}
     'django.middleware.security.SecurityMiddleware',
@@ -86,7 +86,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'accounts.disable_csrf.DisableCSRF',
-    {%- if cookiecutter.tracing.prometheus.enabled %}
+    {%- if cookiecutter.tracing.prometheus.enabled == 'True' %}
     'django_prometheus.middleware.PrometheusAfterMiddleware'
     {%- endif %}
 ]
@@ -172,14 +172,14 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 AUTHENTICATION_BACKENDS = (
-    {%- if cookiecutter.authentication.social.enabled %}
-    {%- if cookiecutter.authentication.social.google.enabled %}
+    {%- if cookiecutter.authentication.social.enabled == 'True' %}
+    {%- if cookiecutter.authentication.social.google.enabled == 'True' %}
     'social_core.backends.google.GoogleOAuth2',
     {%- endif %}
-    {%- if cookiecutter.authentication.social.github.enabled %}
+    {%- if cookiecutter.authentication.social.github.enabled == 'True' %}
     'social_core.backends.github.GithubOAuth2',
     {%- endif %}
-    {%- if cookiecutter.authentication.social.aws_cognito.enabled %}
+    {%- if cookiecutter.authentication.social.aws_cognito.enabled == 'True' %}
     'social_core.backends.cognito.CognitoOAuth2',
     {%- endif %}
     {%- endif %}
@@ -189,8 +189,8 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-{%- if cookiecutter.authentication.social.enabled %}
-{%- if cookiecutter.authentication.social.google.enabled %}
+{%- if cookiecutter.authentication.social.enabled == 'True' %}
+{%- if cookiecutter.authentication.social.google.enabled == 'True' %}
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '{{ cookiecutter.authentication.social.google.oauth2_key }}'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '{{ cookiecutter.authentication.social.google.oauth2_secret }}'
 REST_SOCIAL_OAUTH_ABSOLUTE_REDIRECT_URI = '{{ cookiecutter.authentication.social.google.oauth_absolute_redirect_uri}}'
@@ -201,19 +201,19 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
     'https://www.googleapis.com/auth/userinfo.profile'
 ]
 {%- endif %}
-{%- if cookiecutter.authentication.social.github.enabled %}
+{%- if cookiecutter.authentication.social.github.enabled == 'True' %}
 SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY')
 SOCIAL_AUTH_GITHUB_SECRET = config('SOCIAL_AUTH_GITHUB_SECRET')
 REST_SOCIAL_OAUTH_ABSOLUTE_REDIRECT_URI = config('REST_SOCIAL_OAUTH_ABSOLUTE_REDIRECT_URI')
 {%- endif %}
-{%- if cookiecutter.authentication.social.aws_cognito.enabled %}
+{%- if cookiecutter.authentication.social.aws_cognito.enabled == 'True' %}
 SOCIAL_AUTH_COGNITO_KEY = config('SOCIAL_AUTH_COGNITO_KEY')
 SOCIAL_AUTH_COGNITO_SECRET = config('SOCIAL_AUTH_COGNITO_SECRET')
 SOCIAL_AUTH_COGNITO_POOL_DOMAIN = config('SOCIAL_AUTH_COGNITO_POOL_DOMAIN')
 {%- endif %}
 {%- endif %}
 
-{%- if cookiecutter.worker.celery.enabled %}
+{%- if cookiecutter.worker.celery.enabled == 'True' %}
 # CELERY
 CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
 CELERY_RESULT_BACKEND = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
@@ -225,7 +225,7 @@ CELERY_EVENT_QUEUE_PREFIX = 'sakshammittal'
 {%- endif %}
 
 
-{%- if cookiecutter.email.sendgrid.enabled %}
+{%- if cookiecutter.email.sendgrid.enabled == 'True' %}
 EMAIL_URL = os.environ.get("EMAIL_URL")
 SENDGRID_USERNAME = os.environ.get("SENDGRID_USERNAME")
 SENDGRID_PASSWORD = os.environ.get("SENDGRID_PASSWORD")
@@ -236,7 +236,7 @@ if not EMAIL_URL and SENDGRID_USERNAME and SENDGRID_PASSWORD:
     )
 {%- endif %}
 
-{%- if cookiecutter.email.default.enabled %}
+{%- if cookiecutter.email.default.enabled == 'True' %}
 # EMAIL
 EMAIL_USE_TLS = config('EMAIL_USE_TLS')
 EMAIL_USE_SSL = config('EMAIL_USE_SSL')

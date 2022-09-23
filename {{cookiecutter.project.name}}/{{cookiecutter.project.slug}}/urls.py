@@ -23,7 +23,7 @@ from drf_yasg import openapi
 from accounts.urls import router as accounts_router
 
 
-{%- if cookiecutter.documentation.swagger.enabled %}
+{%- if cookiecutter.documentation.swagger.enabled == 'True' %}
 schema_view = get_schema_view(
    openapi.Info(
       title="{{cookiecutter.project.name}}",
@@ -45,17 +45,17 @@ router.registry.extend(accounts_router.registry)
 urlpatterns = [
     path('admin/', admin.site.urls),
     
-    {%- if cookiecutter.authentication.rest.enabled %}
+    {%- if cookiecutter.authentication.rest.enabled == 'True' %}
     # Auth API URLs
     path('auth/', include('dj_rest_auth.urls')),
     path('auth/registration/', include('dj_rest_auth.registration.urls')),
     {%- endif %}
 
-    {%- if cookiecutter.authentication.rest.enabled %}
+    {%- if cookiecutter.authentication.rest.enabled == 'True' %}
     path('api/login/', include('rest_social_auth.urls_token')),
     {%- endif %}
 
-    {%- if cookiecutter.documentation.swagger.enabled %}
+    {%- if cookiecutter.documentation.swagger.enabled == 'True' %}
     # Swagger Documentation URLs
     path('swagger(?P<format>\.json|\.yaml)', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

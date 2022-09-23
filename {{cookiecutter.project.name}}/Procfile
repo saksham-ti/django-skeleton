@@ -1,10 +1,10 @@
 release: python manage.py migrate
-{%- if cookiecutter.use_async.enabled %}
+{%- if cookiecutter.use_async.enabled == 'True' %}
 web: gunicorn {{cookiecutter.project.slug}}s.asgi:application -k uvicorn.workers.UvicornWorker
 {%- else %}
 web: gunicorn {{cookiecutter.project.slug}}.wsgi:application
 {%- endif %}
-{%- if cookiecutter.worker.celery.enabled %}
+{%- if cookiecutter.worker.celery.enabled == 'True' %}
 worker: REMAP_SIGTERM=SIGQUIT celery -A {{cookiecutter.project.slug}}.celery worker --loglevel=info
 beat: REMAP_SIGTERM=SIGQUIT celery -A {{cookiecutter.project.slug}}.celery beat --loglevel=info
 {%- endif %}

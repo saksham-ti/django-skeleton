@@ -4,7 +4,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-{%- if cookiecutter.database.enabled %}
+{%- if cookiecutter.database.enabled == 'True' %}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
