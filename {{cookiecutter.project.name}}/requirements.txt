@@ -16,7 +16,7 @@ drf-yasg
 pylint-django
 django_prometheus
 
-{%- if cookiecutter.worker.celery is defined %}
+{%- if cookiecutter.worker.celery.enabled %}
 Celery
 django-redis
 
@@ -32,7 +32,7 @@ pytest-factoryboy
 pytest-cov
 python-decouple
 
-{%- if cookiecutter.worker.django_q is defined %}
+{%- if cookiecutter.worker.django_q.enabled %}
 django-q
 {%- endif %}
 
