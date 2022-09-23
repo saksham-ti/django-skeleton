@@ -63,7 +63,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     {% endif %}
     # 'health_check',
-    {%- if cookiecutter.prometheus.enabled %}
+    {%- if cookiecutter.tracing.prometheus.enabled %}
     # 'django_prometheus',
     {%- endif %}
     # {%- if cookiecutter.worker.django_q.enabled %}
@@ -74,7 +74,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    {%- if cookiecutter.prometheus.enabled %}
+    {%- if cookiecutter.tracing.prometheus.enabled %}
     'django_prometheus.middleware.PrometheusBeforeMiddleware',
     {%- endif %}
     'django.middleware.security.SecurityMiddleware',
@@ -86,7 +86,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'accounts.disable_csrf.DisableCSRF',
-    {%- if cookiecutter.prometheus.enabled %}
+    {%- if cookiecutter.tracing.prometheus.enabled %}
     'django_prometheus.middleware.PrometheusAfterMiddleware'
     {%- endif %}
 ]
