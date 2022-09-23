@@ -174,6 +174,9 @@
       "eyk": {
         "enabled": false
       }
+    },
+    "use_async": {
+      "enabled": false
     }
   }
   
