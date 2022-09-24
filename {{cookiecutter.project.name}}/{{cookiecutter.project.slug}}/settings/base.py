@@ -161,10 +161,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SOCIAL_AUTH_JSONFIELD_ENABLED = True
 
-AUTH_USER_MODEL = "accounts.User"
 {%- if cookiecutter.authentication.enabled == 'True' %}
 # ---- allauth and rest-auth settings ----
 SITE_ID = 1
+AUTH_USER_MODEL = "accounts.User"
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True

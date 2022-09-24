@@ -10,7 +10,6 @@ env:
   REPO_URL: ${{ github.server_url}}/${{ github.repository }}.git
   ANALYSIS_PROFILE: CodeViewFull
 
-{% raw %}
 jobs:
   trigger:
     name: Trigger Analysis
@@ -36,4 +35,3 @@ jobs:
             ]'
           )
           echo $STATUSCODE
-{% endraw %}
