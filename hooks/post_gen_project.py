@@ -10,13 +10,25 @@ def append_to_gitignore_file(ignored_line):
 
 
 REMOVE_PATHS = [
+    {% if not cookiecutter.authentication.enabled == 'True' %}
+        'tests/test_auth.py',
+    {% endif %}
+    {% if not cookiecutter.documentation.enabled == 'True' %}
+        'docs',
+    {% endif %}
+    {% if not cookiecutter.environment.env_variables.dotenv.enabled == 'True' %}
+        '.env',
+    {% endif %}
+    {% if not cookiecutter.worker.celery.enabled == 'True' %}
+        '{{cookiecutter.project.slug}}/celery.py',
+    {% endif %}
     {% if not cookiecutter.deployment.cdk.enabled == 'True' %} 
-    'cdk-deployment',
+        'cdk-deployment',
     {% endif %}
 
     {%- if not cookiecutter.tests.enabled == 'True' %}
-    'conftest.py',
-    'tests',
+        'conftest.py',
+        'tests',
     {%- endif %}
 ]
 

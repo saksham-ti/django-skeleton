@@ -15,26 +15,26 @@
         }
     },
     "authentication": {
-        "enabled": true,
+        "enabled": false,
         "rest": {
-            "enabled": true
+            "enabled": false
         },
         "social": {
-            "enabled": true,
+            "enabled": false,
             "google": {
-                "enabled": true,
+                "enabled": false,
                 "oauth2_key": "",
                 "oauth2_secret": "",
                 "oauth_absolute_redirect_uri": ""
             },
             "github": {
-                "enabled": true,
+                "enabled": false,
                 "oauth2_key": "",
                 "oauth2_secret": "",
                 "oauth_absolute_redirect_uri": ""
             },
             "aws_cognito": {
-                "enabled": true,
+                "enabled": false,
                 "key": "",
                 "secret": "",
                 "cognito_pool_domain": ""
@@ -42,7 +42,7 @@
         }
     },
     "database": {
-        "enabled": true,
+        "enabled": false,
         "dynamodb": {
             "enabled": false,
             "endpoint_url": "http://localhost:8080",
@@ -51,7 +51,7 @@
             "aws_secret_access_key": ""
         },
         "sql": {
-            "enabled": true,
+            "enabled": false,
             "engine": "django.db.backends.sqlite3",
             "host": "postgres",
             "port": "5432",
@@ -61,45 +61,52 @@
         }
     },
     "documentation": {
+        "enabled": false,
         "swagger": {
-            "enabled": true
+            "enabled": false
         },
         "readme": {
-            "enabled": true
+            "enabled": false
         },
         "demo_curl_requests": {
-            "enabled": true
+            "enabled": false
         },
         "sample_crud": {
-            "enabled": true
+            "enabled": false
         }
 
     },
     "environment": {
         "linter": "pylint",
         "local_debugger": {
-            "enabled": true
+            "enabled": false
         },
         "env_variables": {
-            "enabled": true
+            "enabled": false,
+            "dotenv": {
+                "enabled": false
+            },
+            "secret_manager": {
+                "enabled": false
+            }
         },
         "dockerfile": {
-            "enabled": true
+            "enabled": false
         },
         "gitpod": {
-            "enabled": true
+            "enabled": false
         }
     },
     "tracing": {
         "prometheus": {
-            "enabled": true
+            "enabled": false
         }
     },
 
     "worker": {
         "celery": {
             "enabled": false,
-            "sample_tasks": true,
+            "sample_tasks": false,
             "timezone": "Asia/Kolkata",
             "workers": 1,
             "broker": "redis"
@@ -109,14 +116,14 @@
         }
     },
     "tests": {
-        "enabled": true,
-        "sample_tests": true,
+        "enabled": false,
+        "sample_tests": false,
         "pytest": {
 
         }
     },
     "email": {
-        "enabled": true,
+        "enabled": false,
         "sendgrid": {
             "enabled": false,
             "email_url": "",
@@ -130,8 +137,8 @@
             "port": "",
             "host_user": "",
             "host_password": "",
-            "use_tls": true,
-            "use_ssl": true,
+            "use_tls": false,
+            "use_ssl": false,
             "default_from_email": "info@trilogy.com"
         }
     },
@@ -152,12 +159,12 @@
         }
     },
     "use_whitenoise": {
-        "enabled": true
+        "enabled": false
     },
     "deployment": {
-        "enabled": true,
+        "enabled": false,
         "cdk": {
-            "enabled": true,
+            "enabled": false,
             "default_region": "",
             "default_account": "",
             "vpc_name": "",
