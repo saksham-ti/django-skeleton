@@ -6,8 +6,8 @@ on:
       - "main"
 
 env:
-  COMMIT_SHA: ${{ github.sha }}
-  REPO_URL: ${{ github.server_url}}/${{ github.repository }}.git
+  COMMIT_SHA: ${{ '{{' }} github.sha }}
+  REPO_URL: ${{ '{{' }} github.server_url}}/${{ '{{' }} github.repository }}.git
   ANALYSIS_PROFILE: CodeViewFull
 
 jobs:
