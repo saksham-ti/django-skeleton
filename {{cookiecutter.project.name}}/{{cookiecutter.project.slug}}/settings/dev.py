@@ -13,7 +13,7 @@ DATABASES = {
     }
 }
 
-{% if cookiecutter.caching.enbled == "True" %}
+{% if cookiecutter.caching.enabled == "True" %}
 CACHES = {
     'default': {
         'BACKEND': 'django_prometheus.cache.backends.filebased.FileBasedCache',

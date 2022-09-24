@@ -26,7 +26,7 @@ DATABASES = {
 }
 {%- endif %}
 
-{% if cookiecutter.caching.enbled == "True" %}
+{% if cookiecutter.caching.enabled == "True" %}
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
