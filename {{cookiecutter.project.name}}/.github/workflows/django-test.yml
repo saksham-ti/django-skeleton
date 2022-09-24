@@ -8,9 +8,9 @@ on:
   pull_request:
     branches: [ main ]
 env:
-  SOCIAL_AUTH_GITHUB_KEY: ${{secrets.SOCIAL_AUTH_GITHUB_KEY}}
-  SOCIAL_AUTH_GITHUB_SECRET: ${{secrets.SOCIAL_AUTH_GITHUB_SECRET}}
-  REST_SOCIAL_OAUTH_ABSOLUTE_REDIRECT_URI: ${{secrets.REST_SOCIAL_OAUTH_ABSOLUTE_REDIRECT_URI}}
+  SOCIAL_AUTH_GITHUB_KEY: ${{{{secrets.SOCIAL_AUTH_GITHUB_KEY}}}}
+  SOCIAL_AUTH_GITHUB_SECRET: ${{{{secrets.SOCIAL_AUTH_GITHUB_SECRET}}}}
+  REST_SOCIAL_OAUTH_ABSOLUTE_REDIRECT_URI: ${{{{secrets.REST_SOCIAL_OAUTH_ABSOLUTE_REDIRECT_URI}}}}
 
 jobs:
   build:
@@ -21,10 +21,10 @@ jobs:
         python-version: [3.8, 3.9]
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python ${{{{ matrix.python-version }}}}
       uses: actions/setup-python@v2
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: ${{{{ matrix.python-version }}}}
     - name: Install Dependencies
       run: |
         cd Django
