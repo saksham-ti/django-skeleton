@@ -14,7 +14,7 @@ from email.policy import default
 from decouple import config
 import os
 from pathlib import Path
-{% if cookiecutter.configuration.logger.enabled %}
+{% if cookiecutter.configuration.logger.enabled == "True" %}
 from .logger import *
 {% endif %}
 

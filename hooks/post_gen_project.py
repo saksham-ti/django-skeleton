@@ -27,11 +27,13 @@ REMOVE_PATHS = [
     {% endif %}
     {% if not cookiecutter.deployment.cdk.enabled == 'True' %} 
         'cdk-deployment',
+        '{{cookiecutter.project.slug}}/.github/workflows/ecs-cdk.yml',
     {% endif %}
 
     {%- if not cookiecutter.tests.enabled == 'True' %}
         'conftest.py',
         'tests',
+        '{{cookiecutter.project.slug}}/.github/workflows/django-test.yml',
     {%- endif %}
 ]
 
