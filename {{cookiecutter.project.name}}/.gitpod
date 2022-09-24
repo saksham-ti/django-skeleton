@@ -8,20 +8,22 @@ ports:
 
 # List the start up tasks. You can start them in parallel in multiple terminals. See https://www.gitpod.io/docs/config-start-tasks/
 tasks:
+  {% if cookiecutter.configuration.dockerfile.enabled == "True" %}
+  - name: Docker Compose Runserver
+    command: docker-compose up
+  {% else %}
   - name: Runserver
     init: pip install -r requirements.txt
     command: |
+        python manage.py makemigrations
         python manage.py migrate
         python manage.py runserver
-
-  # - name: Install node packages
-  #   init: npm i
-  # - name: Create DB Data for devspaces
-  #   command: |
-  #       echo 'Create DB Data for devspaces'
-  #       source scripts/devspace/run_test_setup_devspaces_db.sh
-  # - name: Perform migration and start server
-  #   command: source scripts/devspace/setup_project_gitpod.sh
+  {% if cookiecutter.worker.celery.enabled == "True" %}
+  - name: Celery Worker
+    command: celery -A {{cookiecutter.project.slug}} worker -l INFO
+    openMode: split-right
+  {% endif %}
+  {% endif %}
 
 vscode:
   extensions:

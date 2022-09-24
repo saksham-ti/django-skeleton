@@ -4,6 +4,8 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+ALLOWED_HOSTS = ['*']
+
 {%- if cookiecutter.database.sql.enabled == 'True' %}
 DATABASES = {
     'default': {
@@ -15,8 +17,16 @@ DATABASES = {
         'PORT': config("DB_PORT"),
     }
 }
+{% else %}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 {%- endif %}
 
+{% if cookiecutter.caching.enbled == "True" %}
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
@@ -27,15 +37,7 @@ CACHES = {
         "KEY_PREFIX": "wallstreet",
     }
 }
-
-# CELERY
-CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
-CELERY_RESULT_BACKEND = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
-CELERY_TIMEZONE = 'Asia/Kolkata'
-CELERY_TASK_TRACK_STARTED = True
-CELERY_TASK_TIME_LIMIT = 30 * 60
-CELERY_CACHE_BACKEND = 'django-cache'
-CELERY_EVENT_QUEUE_PREFIX = 'sakshammittal'
+{% endif %}
 
 {%- if cookiecutter.storage.enabled == 'True' %}
 # Storages

@@ -4,18 +4,20 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-{%- if cookiecutter.database.enabled == 'True' %}
+ALLOWED_HOSTS = ['*']
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-{%- endif %}
 
+{% if cookiecutter.caching.enbled == "True" %}
 CACHES = {
     'default': {
         'BACKEND': 'django_prometheus.cache.backends.filebased.FileBasedCache',
         'LOCATION': '/var/tmp/django_cache',
     }
 }
+{% endif %}

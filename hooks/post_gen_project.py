@@ -16,8 +16,11 @@ REMOVE_PATHS = [
     {% if not cookiecutter.documentation.enabled == 'True' %}
         'docs',
     {% endif %}
-    {% if not cookiecutter.environment.env_variables.dotenv.enabled == 'True' %}
+    {% if not cookiecutter.configuration.env_variables.dotenv.enabled == 'True' %}
         '.env',
+    {% endif %}
+    {% if cookiecutter.configuration.logger.enabled %}
+    '{{cookiecutter.project.slug}}/settings/logger.py',
     {% endif %}
     {% if not cookiecutter.worker.celery.enabled == 'True' %}
         '{{cookiecutter.project.slug}}/celery.py',

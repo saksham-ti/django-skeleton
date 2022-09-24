@@ -51,7 +51,7 @@ urlpatterns = [
     path('auth/registration/', include('dj_rest_auth.registration.urls')),
     {%- endif %}
 
-    {%- if cookiecutter.authentication.rest.enabled == 'True' %}
+    {%- if cookiecutter.authentication.social.enabled == 'True' %}
     path('api/login/', include('rest_social_auth.urls_token')),
     {%- endif %}
 

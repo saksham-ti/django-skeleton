@@ -43,6 +43,7 @@ services:
         image: "redis:alpine"
         ports:
             - "6379:6379"
+    {% if cookiecutter.worker.celery.enabled == "True" %}
     celery:
         build: .
         command: celery -A {{cookiecutter.project.slug}} worker -l INFO
@@ -55,5 +56,6 @@ services:
         depends_on:
             - django
             - redis
+  {% endif %}
 volumes:
   pgdata:

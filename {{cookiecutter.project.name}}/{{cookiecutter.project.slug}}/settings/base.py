@@ -14,6 +14,9 @@ from email.policy import default
 from decouple import config
 import os
 from pathlib import Path
+{% if cookiecutter.configuration.logger.enabled %}
+from .logger import *
+{% endif %}
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,9 +30,6 @@ SECRET_KEY = config('SECRET_KEY', default="django-insecure-976gl!=dg_9^upz%)7mbg
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -161,6 +161,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SOCIAL_AUTH_JSONFIELD_ENABLED = True
 
+{%- if cookiecutter.authentication.enabled == 'True' %}
 # ---- allauth and rest-auth settings ----
 SITE_ID = 1
 AUTH_USER_MODEL = "accounts.User"
@@ -212,6 +213,7 @@ SOCIAL_AUTH_COGNITO_SECRET = config('SOCIAL_AUTH_COGNITO_SECRET')
 SOCIAL_AUTH_COGNITO_POOL_DOMAIN = config('SOCIAL_AUTH_COGNITO_POOL_DOMAIN')
 {%- endif %}
 {%- endif %}
+{%- endif %}
 
 {%- if cookiecutter.worker.celery.enabled == 'True' %}
 # CELERY
@@ -235,7 +237,6 @@ if not EMAIL_URL and SENDGRID_USERNAME and SENDGRID_PASSWORD:
         SENDGRID_PASSWORD,
     )
 {%- endif %}
-
 {%- if cookiecutter.email.default.enabled == 'True' %}
 # EMAIL
 EMAIL_USE_TLS = config('EMAIL_USE_TLS')

@@ -76,7 +76,7 @@
         }
 
     },
-    "environment": {
+    "configuration": {
         "linter": "pylint",
         "local_debugger": {
             "enabled": false
@@ -95,6 +95,9 @@
         },
         "gitpod": {
             "enabled": false
+        },
+        "logger": {
+            "enabled": false
         }
     },
     "tracing": {
@@ -102,7 +105,9 @@
             "enabled": false
         }
     },
-
+    "caching": {
+        "enabled": false
+    },
     "worker": {
         "celery": {
             "enabled": false,
